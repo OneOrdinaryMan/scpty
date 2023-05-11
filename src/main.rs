@@ -111,7 +111,7 @@ impl File {
     fn create_file(&self) -> Result<()> {
         let input_string = match self.filetype {
             Filetype::Python3 => String::from("#!/usr/bin/python3"),
-            Filetype::Python2 => String::from("#!/usr/bin/python"),
+            Filetype::Python2 => String::from("#!/usr/bin/python2"),
             Filetype::Shell => String::from("#!/bin/sh"),
             Filetype::Bash => String::from("#!/bin/bash"),
         };
