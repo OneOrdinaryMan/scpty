@@ -9,6 +9,8 @@ use std::{
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
 struct Cli {
+    #[arg(short, long)]
+    verbose: bool,
     #[command(subcommand)]
     command: Commands,
 }
@@ -116,26 +118,47 @@ impl File {
             Filetype::Bash => String::from("#!/bin/bash"),
         };
         fs::write(self.filename.to_owned(), input_string)?;
-        Command::new("chmod")
-            .args(["751", &self.filename])
-            .output()?;
+        if cfg!(unix) {
+            Command::new("chmod")
+                .args(["751", &self.filename])
+                .output()?;
+        }
         Ok(())
     }
 }
 
 fn main() {
     let cli = Cli::parse();
+    if cli.verbose {
+        println!("Validating the file");
+    }
     let file = match cli.command {
         Commands::Python3 { fname } => File::file_python3(fname),
         Commands::Python2 { fname } => File::file_python2(fname),
         Commands::Shell { fname } => File::file_shell(fname),
         Commands::Bash { fname } => File::file_bash(fname),
     };
+    if file.is_ok() && cli.verbose {
+        println!("File Validated. Creating the file");
+    }
     match file {
         Ok(value) => value.create_file().expect("File was not created"),
         Err(e) => {
             println!("Error!, {}", e);
             process::exit(1);
         }
+    }
+    if cli.verbose && cfg!(unix) {
+        println!("File created. Permissions granted.");
+    } else if cli.verbose {
+        println!("File created.");
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn os_test() {
+        assert!(cfg!(unix));
     }
 }
