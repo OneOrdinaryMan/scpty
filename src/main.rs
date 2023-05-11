@@ -1,5 +1,10 @@
 use clap::{Parser, Subcommand};
-use std::{fs, io::Result, path::Path, process};
+use std::{
+    fs,
+    io::Result,
+    path::Path,
+    process::{self, Command},
+};
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = None)]
@@ -29,6 +34,7 @@ struct File {
 }
 
 impl File {
+    // Associative funstions.
     fn file_python3(fname: String) -> Result<File> {
         let filename = format!("{}.py", fname);
         println!("{} - Python 3", filename);
@@ -101,6 +107,20 @@ impl File {
             Err(e) => Err(e),
         }
     }
+    // Methods.
+    fn create_file(&self) -> Result<()> {
+        let input_string = match self.filetype {
+            Filetype::Python3 => String::from("#!/usr/bin/python3"),
+            Filetype::Python2 => String::from("#!/usr/bin/python"),
+            Filetype::Shell => String::from("#!/bin/sh"),
+            Filetype::Bash => String::from("#!/bin/bash"),
+        };
+        fs::write(self.filename.to_owned(), input_string)?;
+        Command::new("chmod")
+            .args(["751", &self.filename])
+            .output()?;
+        Ok(())
+    }
 }
 
 fn main() {
@@ -111,4 +131,11 @@ fn main() {
         Commands::Shell { fname } => File::file_shell(fname),
         Commands::Bash { fname } => File::file_bash(fname),
     };
+    match file {
+        Ok(value) => value.create_file().expect("File was not created"),
+        Err(e) => {
+            println!("Error!, {}", e);
+            process::exit(1);
+        }
+    }
 }
