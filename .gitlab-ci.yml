@@ -1,0 +1,74 @@
+stages:
+  - tests
+  - install
+  - run
+Cargo tests:
+    image: rust:latest
+    stage: tests
+    script:
+        - cargo test
+    only:
+        - main
+        - merge_requests
+        - release
+Install scpty:
+    image: rust:latest
+    stage: install
+    script:
+        - make install
+        - pwd
+        - mkdir artifacts
+        - cp /usr/bin/scpty artifacts/
+        - cp -r /usr/share/scpty artifacts/scpty_assets
+    only:
+        - main
+        - merge_requests
+        - release
+    artifacts:
+        untracked: false
+        when: on_success
+        expire_in: 1 day
+        paths:
+            - artifacts
+Shell:
+    image: rust:latest
+    stage: run
+    script:
+        - cp artifacts/scpty /usr/bin/
+        - cp -r artifacts/scpty_assets /usr/share/scpty
+        - git config --global user.email "tester@test.com"
+        - git config --global user.name "Tester Test"
+        - scpty -l shell hello_world
+        - ls hello_world/src | grep script.sh
+    only:
+        - main
+        - merge_requests
+        - release    
+Bash:
+    image: rust:latest
+    stage: run
+    script:
+        - cp artifacts/scpty /usr/bin/
+        - cp -r artifacts/scpty_assets /usr/share/scpty
+        - git config --global user.email "tester@test.com"
+        - git config --global user.name "Tester Test"
+        - scpty -l bash hello_world
+        - ls hello_world/src | grep script.bash
+    only:
+        - main
+        - merge_requests
+        - release    
+Python:
+    image: rust:latest
+    stage: run
+    script:
+        - cp artifacts/scpty /usr/bin/
+        - cp -r artifacts/scpty_assets /usr/share/scpty
+        - git config --global user.email "tester@test.com"
+        - git config --global user.name "Tester Test"
+        - scpty -l python hello_world
+        - ls hello_world/src | grep script.py
+    only:
+        - main
+        - merge_requests
+        - release    
