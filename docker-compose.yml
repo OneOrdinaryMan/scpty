@@ -1,0 +1,21 @@
+services:
+  dev-help:
+    build:
+      context: .
+      target: help_screen
+  dev-shell:
+    build:
+      context: .
+      target: shell
+  dev-bash:
+    build:
+      context: .
+      target: bash
+  dev-python:
+    build:
+      context: .
+      target: python
+  dev-uninstall:
+    build:
+      context: .
+      target: uninstall
