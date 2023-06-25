@@ -6,7 +6,7 @@ Scpty is a project init tool. This is a cli tool created with the clap framework
 
 To install,
 ```sh
-sudo make install
+sudo make clean install
 ```
 
 To uninstall the project,
