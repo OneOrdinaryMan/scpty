@@ -49,6 +49,8 @@ clean:
 # remaking the project
 remake: clean prepare debug
 
+remake_release: clean prepare release
+
 all: prepare debug
 
 all_r: prepare release
