@@ -15,7 +15,7 @@ Install scpty:
     image: rust:latest
     stage: install
     script:
-        - make install
+        - make clean install
         - pwd
         - mkdir artifacts
         - cp /usr/bin/scpty artifacts/

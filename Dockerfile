@@ -13,7 +13,7 @@ RUN ["/bin/bash", "-c", "cargo test"]
 # Install the app
 FROM tester as installer
 WORKDIR /usr/src/myapp
-RUN ["/bin/bash", "-c", "make install"]
+RUN ["/bin/bash", "-c", "make clean install"]
 # Help
 FROM installer as help_screen
 WORKDIR /
