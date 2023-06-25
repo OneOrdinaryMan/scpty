@@ -1,4 +1,5 @@
 pub mod repo_creation {
+    //! This module has the utilities needed to create the project dir.
 
     use std::{
         env, fs,
@@ -7,12 +8,14 @@ pub mod repo_creation {
         process::{self, Command},
     };
 
+    /// Lang contains the lang for easy match statements later.
     pub enum Lang {
         Shell,
         Bash,
         Python,
     }
 
+    /// Struct RepoCreator contains the name, language, asset_file location and the verbose flag.
     pub struct RepoCreator {
         repo_lang: Lang,
         asset: PathBuf,
@@ -21,6 +24,8 @@ pub mod repo_creation {
     }
 
     impl RepoCreator {
+        /// Constructor function for RepoCreator. accepts repo_lang(String), asset(Pathbuf),
+        /// name(String). Sets the verbose flag as false as default.
         pub fn new(repo_lang: Lang, asset: PathBuf, name: String) -> RepoCreator {
             RepoCreator {
                 repo_lang,
@@ -32,10 +37,12 @@ pub mod repo_creation {
     }
 
     impl RepoCreator {
+        /// Toggle the verbosity of the repo creator.
         pub fn verbose_toggle(&mut self, toggle: bool) {
             self.verbose = toggle;
         }
 
+        /// Will match the lang the and use the private method for creating the project files.
         pub fn create_repo(&self) -> Result<()> {
             match self.repo_lang {
                 Lang::Shell => self.shell_repo(),
@@ -274,10 +281,12 @@ pub mod repo_creation {
 }
 
 pub mod cli {
+    //! Cli implementation for the program. To keep the args private it is under different module.
     use super::repo_creation::Lang;
     use clap::Parser;
     use std::process;
 
+    /// Contains the verbose option and lang flag and name arg
     #[derive(Parser)]
     #[command(author, version, about, long_about = None)]
     pub struct Cli {
@@ -291,10 +300,12 @@ pub mod cli {
     }
 
     impl Cli {
+        /// Get the name arg
         pub fn name(&self) -> String {
             self.name.to_owned()
         }
 
+        /// Get the lang arg as a Lang enum
         pub fn lang(&self) -> Lang {
             match self.lang.as_str() {
                 "shell" => Lang::Shell,
@@ -307,6 +318,7 @@ pub mod cli {
             }
         }
 
+        /// Get the verbosity
         pub fn verbose(&self) -> bool {
             self.verbose
         }
