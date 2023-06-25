@@ -14,13 +14,15 @@ To uninstall the project,
 sudo make uninstall
 ```
 ## Dependecies
-- make
 - tar
-- python (for building the python projects)
+- git
 ## Build Dependencies
 - make
 - cargo
 - tar
+## Optional Dependecies (needed to run the specific lang)
+- make
+- python
 # Usage
 Usage instructions,
 ```sh
