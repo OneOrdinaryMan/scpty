@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+=======
+# v1.0.1
+Changed the install instructions in readme
+Changed the Cargo.toml
+Added remake release
+Changed the version in cargo.toml
+Merge branch 'main' into 'release'
+>>>>>>> main
 # v1.0.0
 - Merge branch 'bug-3-fix-the-make-clean-twice-issue' into 'main'
 - Changed the gitlab ci to use clean install instead of install

@@ -2,7 +2,7 @@
 name = "scpty"
 authors = ["One_Ordinary_Man"]
 description = "App that creates the script with shebang."
-version = "0.1.1"
+version = "1.0.1"
 edition = "2021"
 license = "GPL-3.0-or-later"
 categories = ["command-line-utilities", "filesystem"]
