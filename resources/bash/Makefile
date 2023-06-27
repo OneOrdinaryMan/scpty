@@ -18,16 +18,16 @@ $(TARGET_FILE): $(SRC_FILE) $(TARGET_DIR)
 	@echo "Building the binary"
 	@cp -r $< $@
 	@echo "Setting correct permissions"
-	@chmod 751 $@
+	@chmod 755 $@
 	
 run: $(TARGET_FILE)
 	@./$<
 
 clean:
 	@{\
-		if [ -d $TARGET_DIR ]; then \
+		if [ -d $(TARGET_DIR) ]; then \
 			echo "Cleaning the target directory"; \
-			rm -r $<; \
+			rm -r $(TARGET_DIR); \
 		fi; \
 	}
 

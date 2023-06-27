@@ -1,3 +1,7 @@
+# v1.0.3
+Merge branch 'bug-8-change-the-permissions-in-makefile-in-resources' into 'main'
+Bug 8 change the permissions in makefile in resources
+Merge branch 'main' into 'release'
 # v1.0.2
 - Merge branch 'bug-6-make-double-clears-the-project' into 'main'
 - double clear bug fix
