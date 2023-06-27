@@ -1,9 +1,16 @@
+# v1.0.2
+- Merge branch 'bug-6-make-double-clears-the-project' into 'main'
+- double clear bug fix
+- Add Cargo.lock to gitignore since it changes a lot
+- Merge branch 'release' into 'main'
+- Update 2 files
+- Fixing horrible mistake
 # v1.0.1
-Changed the install instructions in readme
-Changed the Cargo.toml
-Added remake release
-Changed the version in cargo.toml
-Merge branch 'main' into 'release'
+- Changed the install instructions in readme
+- Changed the Cargo.toml
+- Added remake release
+- Changed the version in cargo.toml
+- Merge branch 'main' into 'release'
 # v1.0.0
 - Merge branch 'bug-3-fix-the-make-clean-twice-issue' into 'main'
 - Changed the gitlab ci to use clean install instead of install
