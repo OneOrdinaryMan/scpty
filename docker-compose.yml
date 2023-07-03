@@ -1,4 +1,8 @@
 services:
+  dev-reinstall:
+    build:
+      context: .
+      target: reinstaller
   dev-help:
     build:
       context: .

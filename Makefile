@@ -63,7 +63,7 @@ install: $(TARGET_RELEASE_DIR)/$(TARGET) $(SHARE_FILES) $(SHARE_LOCATION)
 	@echo "Transferring the binary."
 	@cp $< $(BIN_LOCATION)
 	@{\
-		if [ -d $(SHARE_LOCATION)/* ]; then \
+		if [ -n "$$(ls $(SHARE_LOCATION))" ]; then \
 		echo "Cleaning the asset dir for new files.";\
 		rm -r $(SHARE_LOCATION)/*; \
 		fi; \
