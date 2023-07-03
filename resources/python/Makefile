@@ -4,7 +4,6 @@ TARGET=hello_world
 TARGET_DIR=target
 TARGET_FILE=$(TARGET_DIR)/$(TARGET)
 BIN_LOCATION=/usr/bin/
-INTERPRETER_LOCATION= $(shell whereis python | awk '{print $$2}')
 
 .DEFAULT_GOAL:=build
 .PHONY: clean remake build
@@ -18,8 +17,6 @@ build: $(TARGET_FILE)
 $(TARGET_FILE): $(SRC_FILE) $(TARGET_DIR)
 	@echo "Building the binary"
 	@cp -r $< $@
-	@echo "Changing the shebang"
-	@sed -i "1c#!$(INTERPRETER_LOCATION)" $@
 	@echo "Setting correct permissions"
 	@chmod 755 $@
 
