@@ -1,3 +1,8 @@
+# v1.0.4
+Merge branch 'bug-11-share-asset-cleanup-in-reinstall-problem' into 'main'
+v1.0.4
+Merge branch 'bug-10-fix-the-python-script' into 'main'
+Fixed the python to use env
 # v1.0.3
 Merge branch 'bug-8-change-the-permissions-in-makefile-in-resources' into 'main'
 Bug 8 change the permissions in makefile in resources

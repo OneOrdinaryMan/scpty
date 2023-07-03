@@ -14,6 +14,9 @@ RUN ["/bin/bash", "-c", "cargo test"]
 FROM tester as installer
 WORKDIR /usr/src/myapp
 RUN ["/bin/bash", "-c", "make clean install"]
+# Reinstall check
+FROM installer as reinstaller
+CMD ["/bin/bash", "-c", "make install"]
 # Help
 FROM installer as help_screen
 WORKDIR /
