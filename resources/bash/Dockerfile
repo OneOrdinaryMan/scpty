@@ -1,13 +1,10 @@
-# Install the app
 FROM gcc:latest as installer
-COPY . /usr/src/myapp
 WORKDIR /usr/src/myapp
-RUN ["/bin/bash", "-c", "make remake install"]
-# Run the app
+COPY . .
+RUN ["/bin/bash", "-c", "./configure"]
+RUN ["/bin/bash", "-c", "make"]
+RUN ["/bin/bash", "-c", "make install"]
 FROM installer as runner
-WORKDIR /
-CMD ["/bin/bash", "-c","hello_world"]
-# Uninstall
-FROM installer as uninstall
-WORKDIR /usr/src/myapp
-CMD ["/bin/bash", "-c","make uninstall"]
+CMD ["/bin/bash", "-c", "hello_bash"]
+FROM installer as uninstaller
+CMD ["/bin/bash", "-c", "make uninstall"]
