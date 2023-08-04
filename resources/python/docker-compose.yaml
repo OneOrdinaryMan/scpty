@@ -1,9 +1,9 @@
 services:
-  app-run:
+  runner:
     build:
       context: .
       target: runner
-  app-uninstall:
+  uninstaller:
     build:
       context: .
-      target: uninstall
+      target: uninstaller
