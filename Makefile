@@ -10,8 +10,8 @@ SRC_FILES=$(wildcard src/*.rs)
 RESOURCE_DIR=resources
 SHARE_FILES=$(patsubst $(RESOURCE_DIR)/%, $(SHARE_DIR)/%.tar.gz, $(wildcard $(RESOURCE_DIR)/*))
 SHARE_DIR=share
-BIN_LOCATION=/usr/bin
-SHARE_LOCATION=/usr/share/scpty
+BIN_LOCATION=/usr/local/bin
+SHARE_LOCATION=/usr/local/share/scpty
 
 # Phonys and default target
 .DEFAULT_GOAL:=all

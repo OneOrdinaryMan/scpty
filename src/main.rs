@@ -3,7 +3,7 @@ use scpty::{cli, repo_creation::RepoCreator};
 use std::{io::Result, path::PathBuf, process};
 
 fn main() -> Result<()> {
-    let asset_dir = "/usr/share/scpty";
+    let asset_dir = "/usr/local/share/scpty";
     let asset = PathBuf::from(asset_dir);
 
     match asset.try_exists() {
