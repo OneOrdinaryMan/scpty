@@ -24,15 +24,15 @@ CMD ["/bin/bash", "-c", "scpty --help"]
 # Shell
 FROM installer as shell
 WORKDIR /
-CMD ["/bin/bash", "-c", "scpty -l shell hello_world_sh"]
+CMD ["/bin/bash", "-c", "scpty -v -l shell hello_world_sh"]
 # Bash
 FROM installer as bash
 WORKDIR /
-CMD ["/bin/bash", "-c", "scpty -l bash hello_world_bash"]
+CMD ["/bin/bash", "-c", "scpty -v -l bash hello_world_bash"]
 # Python
 FROM installer as python
 WORKDIR /
-CMD ["/bin/bash", "-c", "scpty -l python hello_world_py"]
+CMD ["/bin/bash", "-c", "scpty -v -l python hello_world_py"]
 # Uninstaller tester
 FROM installer as uninstall
 WORKDIR /usr/src/myapp
