@@ -6,7 +6,9 @@ Cargo tests:
     image: rust:latest
     stage: tests
     script:
-        - cargo test
+        - ./configure
+        - make
+        - make check
     only:
         - main
         - merge_requests
@@ -15,11 +17,12 @@ Install scpty:
     image: rust:latest
     stage: install
     script:
-        - make clean install
-        - pwd
+        - ./configure
+        - make
+        - make install
         - mkdir artifacts
-        - cp /usr/bin/scpty artifacts/
-        - cp -r /usr/share/scpty artifacts/scpty_assets
+        - cp /usr/local/bin/scpty artifacts/
+        - cp -r /usr/local/share/scpty artifacts/scpty_assets
     only:
         - main
         - merge_requests
@@ -34,8 +37,8 @@ Shell:
     image: rust:latest
     stage: run
     script:
-        - cp artifacts/scpty /usr/bin/
-        - cp -r artifacts/scpty_assets /usr/share/scpty
+        - cp artifacts/scpty /usr/local/bin/
+        - cp -r artifacts/scpty_assets /usr/local/share/scpty
         - git config --global user.email "tester@test.com"
         - git config --global user.name "Tester Test"
         - scpty -l shell hello_world
@@ -48,8 +51,8 @@ Bash:
     image: rust:latest
     stage: run
     script:
-        - cp artifacts/scpty /usr/bin/
-        - cp -r artifacts/scpty_assets /usr/share/scpty
+        - cp artifacts/scpty /usr/local/bin/
+        - cp -r artifacts/scpty_assets /usr/local/share/scpty
         - git config --global user.email "tester@test.com"
         - git config --global user.name "Tester Test"
         - scpty -l bash hello_world
@@ -62,8 +65,8 @@ Python:
     image: rust:latest
     stage: run
     script:
-        - cp artifacts/scpty /usr/bin/
-        - cp -r artifacts/scpty_assets /usr/share/scpty
+        - cp artifacts/scpty /usr/local/bin/
+        - cp -r artifacts/scpty_assets /usr/local/share/scpty
         - git config --global user.email "tester@test.com"
         - git config --global user.name "Tester Test"
         - scpty -l python hello_world
