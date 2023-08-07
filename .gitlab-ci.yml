@@ -6,7 +6,9 @@ Cargo tests:
     image: rust:latest
     stage: tests
     script:
-        - cargo test
+        - ./configure
+        - make
+        - make check
     only:
         - main
         - merge_requests
@@ -15,8 +17,9 @@ Install scpty:
     image: rust:latest
     stage: install
     script:
-        - make clean install
-        - pwd
+        - ./configure
+        - make
+        - make install
         - mkdir artifacts
         - cp /usr/local/bin/scpty artifacts/
         - cp -r /usr/local/share/scpty artifacts/scpty_assets

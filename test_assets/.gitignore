@@ -1,0 +1,10 @@
+# Directories to ignore
+
+.deps
+# Files to ignore
+
+*~
+*.o
+std_err
+std_out
+Makefile
