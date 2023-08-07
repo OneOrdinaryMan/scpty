@@ -1,9 +1,8 @@
 # Directories to ignore
-target
 autom4te.cache
 # Files to ignore
-*.tar.gz
 *~
+*.tar.gz
 config.log
 config.status
 Makefile
